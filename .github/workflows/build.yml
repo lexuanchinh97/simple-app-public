@@ -21,6 +21,8 @@ jobs:
     runs-on: ubuntu-latest
     environment: 
       name: dev
+    outputs:
+      product_id: ${{ vars.PRODUCT_ID }}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -58,3 +60,5 @@ jobs:
         run: echo "${{ vars.PRODUCT_ID }}"
       - name: Run a secrets script
         run: echo "${{ secrets.PRODUCT_ID }}"
+      - name: Run dev vars
+        run: echo "${{ needs.build-dev.outputs.product_id }}"
